@@ -19,3 +19,10 @@
 
 // let myVariable = document.querySelector("h1");
 
+
+// If nothing as a parameter is given,
+// it represents the present date and time.
+// let A = new Date();
+ 
+// Printing present date and time.
+// console.log(A);
