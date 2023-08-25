@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Promise</h2>
+<p>When you are  calling more than 2 values from same function and one is successful and other one is failure....</p>
+
+<p id="demo"></p>
+
+<script>
+function myDisplayer(some) {
+  document.getElementById("demo").innerHTML = some;
+}
+
+let myPromise = new Promise(function(myResolve, myReject,resolve) {
+  let x = 0;
+
+
+  if (x == 0) {
+    myResolve("OK");
+  } else {
+    myReject("Error");
+  }
+});
+
+myPromise.then(
+  function(value) {myDisplayer(value);},
+  function(error) {myDisplayer(error);}
+);
+</script>
+
+</body>
+</html>
