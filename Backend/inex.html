@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        #image-container {
+            width: 300px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        #image-container img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="image-container">
+        <img id="slider-image" src="" alt="">
+    </div>
+    <input type="number" id="duration-input" placeholder="Enter Duration (ms)">
+    <button id="start-button">Start</button>
+    <button id="stop-button">Stop</button>
+
+    <script>
+        //create images
+        const images = [
+            "image1.jpg",
+            "image2.jpg",
+            "image3.jpg"
+        ];
+        let currentIndex = 0;
+        let intervalId = null;
+
+        const imageContainer = document.getElementById("image-container");
+        const sliderImage = document.getElementById("slider-image");
+        const durationInput = document.getElementById("duration-input");
+        const startButton = document.getElementById("start-button");
+        const stopButton = document.getElementById("stop-button");
+
+        function changeImage() {
+            sliderImage.alt = images[currentIndex];
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        function startSlider() {
+            const duration = parseInt(durationInput.value);
+
+            if (isNaN(duration) || duration <= 0) {
+                alert("Please enter a valid positive number for duration.");
+                return;
+            }
+
+            intervalId = setInterval(changeImage, duration);
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        }
+
+        function stopSlider() {
+            clearInterval(intervalId);
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        }
+
+        startButton.addEventListener("click", startSlider);
+        stopButton.addEventListener("click", stopSlider);
+    </script>
+</body>
+</html>
